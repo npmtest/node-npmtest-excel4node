@@ -1,1 +1,40 @@
-{     "devDependencies": {         "excel4node": "*",         "electron-lite": "kaizhu256/node-electron-lite#alpha",         "utility2": "kaizhu256/node-utility2#alpha"     },     "name":"npmtest-excel4node",     "homepage": "https://github.com/npmtest/node-npmtest-excel4node",     "repository": {         "type": "git",         "url": "https://github.com/npmtest/node-npmtest-excel4node.git"     },     "scripts": {         "build-ci": "utility2 shReadmeTest build_ci.sh"     },     "version": "0.0.1" }
+{
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "description": "test coverage for [excel4node (v1.2.1)](https://github.com/natergj/excel4node#readme) [![npm package](https://img.shields.io/npm/v/npmtest-excel4node.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-excel4node) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-excel4node.svg)](https://travis-ci.org/npmtest/node-npmtest-excel4node)",
+    "devDependencies": {
+        "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "excel4node": "*",
+        "utility2": "kaizhu256/node-utility2#alpha"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmtest/node-npmtest-excel4node",
+    "keywords": [
+        "coverage",
+        "test",
+        "excel4node"
+    ],
+    "license": "MIT",
+    "main": "lib.npmtest_excel4node.js",
+    "name": "npmtest-excel4node",
+    "nameAlias": "npmtest_excel4node",
+    "nameOriginal": "npmtest-excel4node",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/npmtest/node-npmtest-excel4node.git"
+    },
+    "scripts": {
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
+    },
+    "version": "0.0.1"
+}
