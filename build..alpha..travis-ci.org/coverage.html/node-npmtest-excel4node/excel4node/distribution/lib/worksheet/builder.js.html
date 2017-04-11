@@ -1,0 +1,1685 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-excel4node/excel4node/distribution/lib/worksheet/builder.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-excel4node">npmtest-excel4node (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-excel4node/excel4node/distribution/lib/worksheet/builder.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">8.62% <small>(25 / 290)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 207)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 55)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">8.62% <small>(25 / 290)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-excel4node/excel4node/distribution/lib/worksheet/</a> &#187; builder.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var xml = require('xmlbuilder');
+var utils = require('../utils.js');
+var types = require('../types/index.js');
+var hyperlinks = require('./classes/hyperlink');
+var Picture = require('../drawing/picture.js');
+&nbsp;
+var _addSheetPr = <span class="fstat-no" title="function not covered" >function _addSheetPr(promiseObj) {</span>
+    // §18.3.1.82 sheetPr (Sheet Properties)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var o = promiseObj.ws.opts;</span>
+&nbsp;
+        // Check if any option that would require the sheetPr element to be added exists
+<span class="cstat-no" title="statement not covered" >        if (o.printOptions.fitToHeight !== null || o.printOptions.fitToWidth !== null || o.outline.summaryBelow !== null || o.autoFilter.ref !== null || o.outline.summaryRight) {</span>
+<span class="cstat-no" title="statement not covered" >            var ele = promiseObj.xml.ele('sheetPr');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (o.autoFilter.ref) {</span>
+<span class="cstat-no" title="statement not covered" >                ele.att('enableFormatConditionsCalculation', 1);</span>
+<span class="cstat-no" title="statement not covered" >                ele.att('filterMode', 1);</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (o.outline.summaryBelow !== null || o.outline.summaryRight !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                var outlineEle = ele.ele('outlinePr');</span>
+<span class="cstat-no" title="statement not covered" >                outlineEle.att('applyStyles', 1);</span>
+<span class="cstat-no" title="statement not covered" >                o.outline.summaryBelow === true ? outlineEle.att('summaryBelow', 1) : null;</span>
+<span class="cstat-no" title="statement not covered" >                o.outline.summaryRight === true ? outlineEle.att('summaryRight', 1) : null;</span>
+<span class="cstat-no" title="statement not covered" >                outlineEle.up();</span>
+            }
+&nbsp;
+            // §18.3.1.65 pageSetUpPr (Page Setup Properties)
+<span class="cstat-no" title="statement not covered" >            if (o.pageSetup.fitToHeight !== null || o.pageSetup.fitToWidth !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                ele.ele('pageSetUpPr').att('fitToPage', 1).up();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            ele.up();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addDimension = <span class="fstat-no" title="function not covered" >function _addDimension(promiseObj) {</span>
+    // §18.3.1.35 dimension (Worksheet Dimensions)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var firstCell = 'A1';</span>
+<span class="cstat-no" title="statement not covered" >        var lastCell = '' + utils.getExcelAlpha(promiseObj.ws.lastUsedCol) + promiseObj.ws.lastUsedRow;</span>
+<span class="cstat-no" title="statement not covered" >        var ele = promiseObj.xml.ele('dimension');</span>
+<span class="cstat-no" title="statement not covered" >        ele.att('ref', firstCell + ':' + lastCell);</span>
+<span class="cstat-no" title="statement not covered" >        ele.up();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addSheetViews = <span class="fstat-no" title="function not covered" >function _addSheetViews(promiseObj) {</span>
+    // §18.3.1.88 sheetViews (Sheet Views)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var o = promiseObj.ws.opts.sheetView;</span>
+<span class="cstat-no" title="statement not covered" >        var ele = promiseObj.xml.ele('sheetViews');</span>
+<span class="cstat-no" title="statement not covered" >        var tabSelected = promiseObj.ws.opts;</span>
+<span class="cstat-no" title="statement not covered" >        var sv = ele.ele('sheetView').att('tabSelected', o.tabSelected).att('workbookViewId', o.workbookViewId).att('rightToLeft', o.rightToLeft).att('zoomScale', o.zoomScale).att('zoomScaleNormal', o.zoomScaleNormal).att('zoomScalePageLayoutView', o.zoomScalePageLayoutView);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var modifiedPaneParams = [];</span>
+<span class="cstat-no" title="statement not covered" >        Object.keys(o.pane).forEach(<span class="fstat-no" title="function not covered" >function (k) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (o.pane[k] !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                modifiedPaneParams.push(k);</span>
+            }
+        });
+<span class="cstat-no" title="statement not covered" >        if (modifiedPaneParams.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            var pEle = sv.ele('pane');</span>
+<span class="cstat-no" title="statement not covered" >            o.pane.xSplit !== null ? pEle.att('xSplit', o.pane.xSplit) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.pane.ySplit !== null ? pEle.att('ySplit', o.pane.ySplit) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.pane.topLeftCell !== null ? pEle.att('topLeftCell', o.pane.topLeftCell) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.pane.activePane !== null ? pEle.att('activePane', o.pane.activePane) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.pane.state !== null ? pEle.att('state', o.pane.state) : null;</span>
+<span class="cstat-no" title="statement not covered" >            pEle.up();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        sv.up();</span>
+<span class="cstat-no" title="statement not covered" >        ele.up();</span>
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addSheetFormatPr = <span class="fstat-no" title="function not covered" >function _addSheetFormatPr(promiseObj) {</span>
+    // §18.3.1.81 sheetFormatPr (Sheet Format Properties)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var o = promiseObj.ws.opts.sheetFormat;</span>
+<span class="cstat-no" title="statement not covered" >        var ele = promiseObj.xml.ele('sheetFormatPr');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        o.baseColWidth !== null ? ele.att('baseColWidth', o.baseColWidth) : null;</span>
+<span class="cstat-no" title="statement not covered" >        o.defaultColWidth !== null ? ele.att('defaultColWidth', o.defaultColWidth) : null;</span>
+<span class="cstat-no" title="statement not covered" >        o.defaultRowHeight !== null ? ele.att('defaultRowHeight', o.defaultRowHeight) : ele.att('defaultRowHeight', 16);</span>
+<span class="cstat-no" title="statement not covered" >        o.thickBottom !== null ? ele.att('thickBottom', utils.boolToInt(o.thickBottom)) : null;</span>
+<span class="cstat-no" title="statement not covered" >        o.thickTop !== null ? ele.att('thickTop', utils.boolToInt(o.thickTop)) : null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (typeof o.defaultRowHeight === 'number') {</span>
+<span class="cstat-no" title="statement not covered" >            ele.att('customHeight', '1');</span>
+        }
+<span class="cstat-no" title="statement not covered" >        ele.up();</span>
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addCols = <span class="fstat-no" title="function not covered" >function _addCols(promiseObj) {</span>
+    // §18.3.1.17 cols (Column Information)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (promiseObj.ws.columnCount &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            var colsEle = promiseObj.xml.ele('cols');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            for (var colId in promiseObj.ws.cols) {</span>
+<span class="cstat-no" title="statement not covered" >                var col = promiseObj.ws.cols[colId];</span>
+<span class="cstat-no" title="statement not covered" >                var colEle = colsEle.ele('col');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                col.min !== null ? colEle.att('min', col.min) : null;</span>
+<span class="cstat-no" title="statement not covered" >                col.max !== null ? colEle.att('max', col.max) : null;</span>
+<span class="cstat-no" title="statement not covered" >                col.width !== null ? colEle.att('width', col.width) : null;</span>
+<span class="cstat-no" title="statement not covered" >                col.style !== null ? colEle.att('style', col.style) : null;</span>
+<span class="cstat-no" title="statement not covered" >                col.hidden !== null ? colEle.att('hidden', utils.boolToInt(col.hidden)) : null;</span>
+<span class="cstat-no" title="statement not covered" >                col.customWidth !== null ? colEle.att('customWidth', utils.boolToInt(col.customWidth)) : null;</span>
+<span class="cstat-no" title="statement not covered" >                col.outlineLevel !== null ? colEle.att('outlineLevel', col.outlineLevel) : null;</span>
+<span class="cstat-no" title="statement not covered" >                col.collapsed !== null ? colEle.att('collapsed', utils.boolToInt(col.collapsed)) : null;</span>
+<span class="cstat-no" title="statement not covered" >                colEle.up();</span>
+            }
+<span class="cstat-no" title="statement not covered" >            colsEle.up();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addSheetData = <span class="fstat-no" title="function not covered" >function _addSheetData(promiseObj) {</span>
+    // §18.3.1.80 sheetData (Sheet Data)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var ele = promiseObj.xml.ele('sheetData');</span>
+<span class="cstat-no" title="statement not covered" >        var rows = Object.keys(promiseObj.ws.rows);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var processRows = <span class="fstat-no" title="function not covered" >function processRows(theseRows) {</span></span>
+<span class="cstat-no" title="statement not covered" >            for (var r = 0; r &lt; theseRows.length; r++) {</span>
+<span class="cstat-no" title="statement not covered" >                var thisRow = promiseObj.ws.rows[theseRows[r]];</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.cellRefs.sort(utils.sortCellRefs);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var rEle = ele.ele('row');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                rEle.att('r', thisRow.r);</span>
+<span class="cstat-no" title="statement not covered" >                rEle.att('spans', thisRow.spans);</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.s !== null ? rEle.att('s', thisRow.s) : null;</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.customFormat !== null ? rEle.att('customFormat', thisRow.customFormat) : null;</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.ht !== null ? rEle.att('ht', thisRow.ht) : null;</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.hidden !== null ? rEle.att('hidden', thisRow.hidden) : null;</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.customHeight === true || typeof promiseObj.ws.opts.sheetFormat.defaultRowHeight === 'number' ? rEle.att('customHeight', 1) : null;</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.outlineLevel !== null ? rEle.att('outlineLevel', thisRow.outlineLevel) : null;</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.collapsed !== null ? rEle.att('collapsed', thisRow.collapsed) : null;</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.thickTop !== null ? rEle.att('thickTop', thisRow.thickTop) : null;</span>
+<span class="cstat-no" title="statement not covered" >                thisRow.thickBot !== null ? rEle.att('thickBot', thisRow.thickBot) : null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                for (var i = 0; i &lt; thisRow.cellRefs.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                    promiseObj.ws.cells[thisRow.cellRefs[i]].addToXMLele(rEle);</span>
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                rEle.up();</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            processNextRows();</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var processNextRows = <span class="fstat-no" title="function not covered" >function processNextRows() {</span></span>
+<span class="cstat-no" title="statement not covered" >            var theseRows = rows.splice(0, 500);</span>
+<span class="cstat-no" title="statement not covered" >            if (theseRows.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >                ele.up();</span>
+<span class="cstat-no" title="statement not covered" >                return resolve(promiseObj);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            processRows(theseRows);</span>
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        processNextRows();</span>
+    });
+};
+&nbsp;
+var _addSheetProtection = <span class="fstat-no" title="function not covered" >function _addSheetProtection(promiseObj) {</span>
+    // §18.3.1.85 sheetProtection (Sheet Protection Options)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var o = promiseObj.ws.opts.sheetProtection;</span>
+<span class="cstat-no" title="statement not covered" >        var includeSheetProtection = false;</span>
+<span class="cstat-no" title="statement not covered" >        Object.keys(o).forEach(<span class="fstat-no" title="function not covered" >function (k) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (o[k] !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                includeSheetProtection = true;</span>
+            }
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (includeSheetProtection) {</span>
+<span class="cstat-no" title="statement not covered" >            (<span class="fstat-no" title="function not covered" >function () {</span></span>
+                // Set required fields with defaults if not specified
+<span class="cstat-no" title="statement not covered" >                o.sheet = o.sheet !== null ? o.sheet : true;</span>
+<span class="cstat-no" title="statement not covered" >                o.objects = o.objects !== null ? o.objects : true;</span>
+<span class="cstat-no" title="statement not covered" >                o.scenarios = o.scenarios !== null ? o.scenarios : true;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var ele = promiseObj.xml.ele('sheetProtection');</span>
+<span class="cstat-no" title="statement not covered" >                Object.keys(o).forEach(<span class="fstat-no" title="function not covered" >function (k) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (o[k] !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (k === 'password') {</span>
+<span class="cstat-no" title="statement not covered" >                            ele.att('password', utils.getHashOfPassword(o[k]));</span>
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            ele.att(k, utils.boolToInt(o[k]));</span>
+                        }
+                    }
+                });
+<span class="cstat-no" title="statement not covered" >                ele.up();</span>
+            })();
+        }
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addAutoFilter = <span class="fstat-no" title="function not covered" >function _addAutoFilter(promiseObj) {</span>
+    // §18.3.1.2 autoFilter (AutoFilter Settings)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var o = promiseObj.ws.opts.autoFilter;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (typeof o.startRow === 'number') {</span>
+<span class="cstat-no" title="statement not covered" >            var ele = promiseObj.xml.ele('autoFilter');</span>
+<span class="cstat-no" title="statement not covered" >            var filterRow = promiseObj.ws.rows[o.startRow];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            o.startCol = typeof o.startCol === 'number' ? o.startCol : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.endCol = typeof o.endCol === 'number' ? o.endCol : null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (typeof o.endRow !== 'number') {</span>
+<span class="cstat-no" title="statement not covered" >                var firstEmptyRow = undefined;</span>
+<span class="cstat-no" title="statement not covered" >                var curRow = o.startRow;</span>
+<span class="cstat-no" title="statement not covered" >                while (firstEmptyRow === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (!promiseObj.ws.rows[curRow]) {</span>
+<span class="cstat-no" title="statement not covered" >                        firstEmptyRow = curRow;</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        curRow++;</span>
+                    }
+                }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                o.endRow = firstEmptyRow - 1;</span>
+            }
+&nbsp;
+            // Columns to sort not manually set. filter all columns in this row containing data.
+<span class="cstat-no" title="statement not covered" >            if (typeof o.startCol !== 'number' || typeof o.endCol !== 'number') {</span>
+<span class="cstat-no" title="statement not covered" >                o.startCol = filterRow.firstColumn;</span>
+<span class="cstat-no" title="statement not covered" >                o.endCol = filterRow.lastColumn;</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var startCell = utils.getExcelAlpha(o.startCol) + o.startRow;</span>
+<span class="cstat-no" title="statement not covered" >            var endCell = utils.getExcelAlpha(o.endCol) + o.endRow;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            ele.att('ref', startCell + ':' + endCell);</span>
+<span class="cstat-no" title="statement not covered" >            promiseObj.ws.wb.definedNameCollection.addDefinedName({</span>
+                hidden: 1,
+                localSheetId: promiseObj.ws.localSheetId,
+                name: '_xlnm._FilterDatabase',
+                refFormula: '\'' + promiseObj.ws.name + '\'!' + '$' + utils.getExcelAlpha(o.startCol) + '$' + o.startRow + ':' + '$' + utils.getExcelAlpha(o.endCol) + '$' + o.endRow
+            });
+<span class="cstat-no" title="statement not covered" >            ele.up();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addMergeCells = <span class="fstat-no" title="function not covered" >function _addMergeCells(promiseObj) {</span>
+    // §18.3.1.55 mergeCells (Merge Cells)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (promiseObj.ws.mergedCells instanceof Array &amp;&amp; promiseObj.ws.mergedCells.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            (<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                var ele = promiseObj.xml.ele('mergeCells').att('count', promiseObj.ws.mergedCells.length);</span>
+<span class="cstat-no" title="statement not covered" >                promiseObj.ws.mergedCells.forEach(<span class="fstat-no" title="function not covered" >function (cr) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    ele.ele('mergeCell').att('ref', cr).up();</span>
+                });
+<span class="cstat-no" title="statement not covered" >                ele.up();</span>
+            })();
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addConditionalFormatting = <span class="fstat-no" title="function not covered" >function _addConditionalFormatting(promiseObj) {</span>
+    // §18.3.1.18 conditionalFormatting (Conditional Formatting)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.ws.cfRulesCollection.addToXMLele(promiseObj.xml);</span>
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addHyperlinks = <span class="fstat-no" title="function not covered" >function _addHyperlinks(promiseObj) {</span>
+    // §18.3.1.48 hyperlinks (Hyperlinks)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.ws.hyperlinkCollection.addToXMLele(promiseObj.xml);</span>
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addDataValidations = <span class="fstat-no" title="function not covered" >function _addDataValidations(promiseObj) {</span>
+    // §18.3.1.33 dataValidations (Data Validations)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (promiseObj.ws.dataValidationCollection.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            promiseObj.ws.dataValidationCollection.addToXMLele(promiseObj.xml);</span>
+        }
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addPrintOptions = <span class="fstat-no" title="function not covered" >function _addPrintOptions(promiseObj) {</span>
+    // §18.3.1.70 printOptions (Print Options)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var addPrintOptions = false;</span>
+<span class="cstat-no" title="statement not covered" >        var o = promiseObj.ws.opts.printOptions;</span>
+<span class="cstat-no" title="statement not covered" >        Object.keys(o).forEach(<span class="fstat-no" title="function not covered" >function (k) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (o[k] !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                addPrintOptions = true;</span>
+            }
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (addPrintOptions) {</span>
+<span class="cstat-no" title="statement not covered" >            var poEle = promiseObj.xml.ele('printOptions');</span>
+<span class="cstat-no" title="statement not covered" >            o.centerHorizontal === true ? poEle.att('horizontalCentered', 1) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.centerVertical === true ? poEle.att('verticalCentered', 1) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.printHeadings === true ? poEle.att('headings', 1) : null;</span>
+<span class="cstat-no" title="statement not covered" >            if (o.printGridLines === true) {</span>
+<span class="cstat-no" title="statement not covered" >                poEle.att('gridLines', 1);</span>
+<span class="cstat-no" title="statement not covered" >                poEle.att('gridLinesSet', 1);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            poEle.up();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addPageMargins = <span class="fstat-no" title="function not covered" >function _addPageMargins(promiseObj) {</span>
+    // §18.3.1.62 pageMargins (Page Margins)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var o = promiseObj.ws.opts.margins;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        promiseObj.xml.ele('pageMargins').att('left', o.left).att('right', o.right).att('top', o.top).att('bottom', o.bottom).att('header', o.header).att('footer', o.footer).up();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addPageSetup = <span class="fstat-no" title="function not covered" >function _addPageSetup(promiseObj) {</span>
+    // §18.3.1.63 pageSetup (Page Setup Settings)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var addPageSetup = false;</span>
+<span class="cstat-no" title="statement not covered" >        var o = promiseObj.ws.opts.pageSetup;</span>
+<span class="cstat-no" title="statement not covered" >        Object.keys(o).forEach(<span class="fstat-no" title="function not covered" >function (k) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (o[k] !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                addPageSetup = true;</span>
+            }
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (addPageSetup === true) {</span>
+<span class="cstat-no" title="statement not covered" >            var psEle = promiseObj.xml.ele('pageSetup');</span>
+<span class="cstat-no" title="statement not covered" >            o.paperSize !== null ? psEle.att('paperSize', types.paperSize[o.paperSize]) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.paperHeight !== null ? psEle.att('paperHeight', o.paperHeight) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.paperWidth !== null ? psEle.att('paperWidth', o.paperWidth) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.scale !== null ? psEle.att('scale', o.scale) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.firstPageNumber !== null ? psEle.att('firstPageNumber', o.firstPageNumber) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.fitToWidth !== null ? psEle.att('fitToWidth', o.fitToWidth) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.fitToHeight !== null ? psEle.att('fitToHeight', o.fitToHeight) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.pageOrder !== null ? psEle.att('pageOrder', o.pageOrder) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.orientation !== null ? psEle.att('orientation', o.orientation) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.usePrinterDefaults !== null ? psEle.att('usePrinterDefaults', utils.boolToInt(o.usePrinterDefaults)) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.blackAndWhite !== null ? psEle.att('blackAndWhite', utils.boolToInt(o.blackAndWhite)) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.draft !== null ? psEle.att('draft', utils.boolToInt(o.draft)) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.cellComments !== null ? psEle.att('cellComments', o.cellComments) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.useFirstPageNumber !== null ? psEle.att('useFirstPageNumber', utils.boolToInt(o.useFirstPageNumber)) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.errors !== null ? psEle.att('errors', o.errors) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.horizontalDpi !== null ? psEle.att('horizontalDpi', o.horizontalDpi) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.verticalDpi !== null ? psEle.att('verticalDpi', o.verticalDpi) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.copies !== null ? psEle.att('copies', o.copies) : null;</span>
+<span class="cstat-no" title="statement not covered" >            psEle.up();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addHeaderFooter = <span class="fstat-no" title="function not covered" >function _addHeaderFooter(promiseObj) {</span>
+    // §18.3.1.46 headerFooter (Header Footer Settings)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var addHeaderFooter = false;</span>
+<span class="cstat-no" title="statement not covered" >        var o = promiseObj.ws.opts.headerFooter;</span>
+<span class="cstat-no" title="statement not covered" >        Object.keys(o).forEach(<span class="fstat-no" title="function not covered" >function (k) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (o[k] !== null) {</span>
+<span class="cstat-no" title="statement not covered" >                addHeaderFooter = true;</span>
+            }
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (addHeaderFooter === true) {</span>
+<span class="cstat-no" title="statement not covered" >            var hfEle = promiseObj.xml.ele('headerFooter');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            o.alignWithMargins !== null ? hfEle.att('alignWithMargins', utils.boolToInt(o.alignWithMargins)) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.differentFirst !== null ? hfEle.att('differentFirst', utils.boolToInt(o.differentFirst)) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.differentOddEven !== null ? hfEle.att('differentOddEven', utils.boolToInt(o.differentOddEven)) : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.scaleWithDoc !== null ? hfEle.att('scaleWithDoc', utils.boolToInt(o.scaleWithDoc)) : null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            o.oddHeader !== null ? hfEle.ele('oddHeader').text(o.oddHeader).up() : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.oddFooter !== null ? hfEle.ele('oddFooter').text(o.oddFooter).up() : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.evenHeader !== null ? hfEle.ele('evenHeader').text(o.evenHeader).up() : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.evenFooter !== null ? hfEle.ele('evenFooter').text(o.evenFooter).up() : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.firstHeader !== null ? hfEle.ele('firstHeader').text(o.firstHeader).up() : null;</span>
+<span class="cstat-no" title="statement not covered" >            o.firstFooter !== null ? hfEle.ele('firstFooter').text(o.firstFooter).up() : null;</span>
+<span class="cstat-no" title="statement not covered" >            hfEle.up();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var _addDrawing = <span class="fstat-no" title="function not covered" >function _addDrawing(promiseObj) {</span>
+    // §18.3.1.36 drawing (Drawing)
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!promiseObj.ws.drawingCollection.isEmpty) {</span>
+<span class="cstat-no" title="statement not covered" >            var dId = promiseObj.ws.relationships.indexOf('drawing') + 1;</span>
+<span class="cstat-no" title="statement not covered" >            promiseObj.xml.ele('drawing').att('r:id', 'rId' + dId).up();</span>
+        }
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var sheetXML = <span class="fstat-no" title="function not covered" >function sheetXML(ws) {</span>
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xmlProlog = '&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;';</span>
+<span class="cstat-no" title="statement not covered" >        var xmlString = '';</span>
+<span class="cstat-no" title="statement not covered" >        var wsXML = xml.begin(<span class="fstat-no" title="function not covered" >function (chunk) {</span></span>
+<span class="cstat-no" title="statement not covered" >            xmlString += chunk;</span>
+        }).ele('worksheet').att('mc:Ignorable', 'x14ac').att('xmlns', 'http://schemas.openxmlformats.org/spreadsheetml/2006/main').att('xmlns:mc', 'http://schemas.openxmlformats.org/markup-compatibility/2006').att('xmlns:r', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships').att('xmlns:x14ac', 'http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac');
+&nbsp;
+        // Excel complains if specific elements on not in the correct order in the XML doc.
+<span class="cstat-no" title="statement not covered" >        var promiseObj = { xml: wsXML, ws: ws };</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        _addSheetPr(promiseObj).then(_addDimension).then(_addSheetViews).then(_addSheetFormatPr).then(_addCols).then(_addSheetData).then(_addSheetProtection).then(_addAutoFilter).then(_addMergeCells).then(_addConditionalFormatting).then(_addDataValidations).then(_addHyperlinks).then(_addPrintOptions).then(_addPageMargins).then(_addPageSetup).then(_addHeaderFooter).then(_addDrawing).then(<span class="fstat-no" title="function not covered" >function (promiseObj) {</span></span>
+<span class="cstat-no" title="statement not covered" >            return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >                wsXML.end();</span>
+<span class="cstat-no" title="statement not covered" >                resolve(xmlString);</span>
+            });
+        }).then(<span class="fstat-no" title="function not covered" >function (xml) {</span>
+<span class="cstat-no" title="statement not covered" >            resolve(xml);</span>
+        }).catch(<span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >            throw new Error(e.stack);</span>
+        });
+    });
+};
+&nbsp;
+var relsXML = <span class="fstat-no" title="function not covered" >function relsXML(ws) {</span>
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var sheetRelRequired = false;</span>
+<span class="cstat-no" title="statement not covered" >        if (ws.relationships.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            sheetRelRequired = true;</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (sheetRelRequired === false) {</span>
+<span class="cstat-no" title="statement not covered" >            resolve();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var relXML = xml.create('Relationships', {</span>
+            'version': '1.0',
+            'encoding': 'UTF-8',
+            'standalone': true
+        });
+<span class="cstat-no" title="statement not covered" >        relXML.att('xmlns', 'http://schemas.openxmlformats.org/package/2006/relationships');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        ws.relationships.forEach(<span class="fstat-no" title="function not covered" >function (r, i) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var rId = 'rId' + (i + 1);</span>
+<span class="cstat-no" title="statement not covered" >            if (r instanceof hyperlinks.Hyperlink) {</span>
+<span class="cstat-no" title="statement not covered" >                relXML.ele('Relationship').att('Id', rId).att('Target', r.location).att('TargetMode', 'External').att('Type', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink');</span>
+            } else <span class="cstat-no" title="statement not covered" >if (r === 'drawing') {</span>
+<span class="cstat-no" title="statement not covered" >                relXML.ele('Relationship').att('Id', rId).att('Target', '../drawings/drawing' + ws.sheetId + '.xml').att('Type', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/drawing');</span>
+            }
+        });
+<span class="cstat-no" title="statement not covered" >        var xmlString = relXML.doc().end();</span>
+<span class="cstat-no" title="statement not covered" >        resolve(xmlString);</span>
+    });
+};
+&nbsp;
+module.exports = { sheetXML: sheetXML, relsXML: relsXML };
+//# sourceMappingURL=builder.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 18:18:07 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>

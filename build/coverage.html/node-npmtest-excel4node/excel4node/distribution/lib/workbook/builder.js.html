@@ -1,0 +1,1388 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-excel4node/excel4node/distribution/lib/workbook/builder.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-excel4node">npmtest-excel4node (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-excel4node/excel4node/distribution/lib/workbook/builder.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">7.58% <small>(15 / 198)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">4.11% <small>(3 / 73)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 51)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">7.65% <small>(15 / 196)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-excel4node/excel4node/distribution/lib/workbook/</a> &#187; builder.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var _typeof = typeof Symbol === "function" &amp;&amp; typeof Symbol.iterator === "symbol" ? <span class="fstat-no" title="function not covered" >function (obj) {</span> <span class="cstat-no" title="statement not covered" >return typeof obj; </span>} : <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (obj) {</span> <span class="cstat-no" title="statement not covered" >return obj &amp;&amp; typeof Symbol === "function" &amp;&amp; obj.constructor === Symbol ? "symbol" : typeof obj; </span>};</span>
+&nbsp;
+var xmlbuilder = require('xmlbuilder');
+var JSZip = require('jszip');
+var fs = require('fs');
+var CTColor = require('../style/classes/ctColor.js');
+&nbsp;
+var addRootContentTypesXML = <span class="fstat-no" title="function not covered" >function addRootContentTypesXML(promiseObj) {</span>
+    // Required as stated in §12.2
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var xml = xmlbuilder.create('Types', {</span>
+            'version': '1.0',
+            'encoding': 'UTF-8',
+            'standalone': true
+        }).att('xmlns', 'http://schemas.openxmlformats.org/package/2006/content-types');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var contentTypesAdded = [];</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.wb.sheets.forEach(<span class="fstat-no" title="function not covered" >function (s, i) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (s.drawingCollection.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                (<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                    var extensionsAdded = [];</span>
+<span class="cstat-no" title="statement not covered" >                    s.drawingCollection.drawings.forEach(<span class="fstat-no" title="function not covered" >function (d) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (extensionsAdded.indexOf(d.extension) &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                            var typeRef = d.contentType + '.' + d.extension;</span>
+<span class="cstat-no" title="statement not covered" >                            if (contentTypesAdded.indexOf(typeRef) &lt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                                xml.ele('Default').att('ContentType', d.contentType).att('Extension', d.extension);</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            extensionsAdded.push(d.extension);</span>
+                        }
+                    });
+                })();
+            }
+        });
+<span class="cstat-no" title="statement not covered" >        xml.ele('Default').att('ContentType', 'application/xml').att('Extension', 'xml');</span>
+<span class="cstat-no" title="statement not covered" >        xml.ele('Default').att('ContentType', 'application/vnd.openxmlformats-package.relationships+xml').att('Extension', 'rels');</span>
+<span class="cstat-no" title="statement not covered" >        xml.ele('Override').att('ContentType', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml').att('PartName', '/xl/workbook.xml');</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.wb.sheets.forEach(<span class="fstat-no" title="function not covered" >function (s, i) {</span></span>
+<span class="cstat-no" title="statement not covered" >            xml.ele('Override').att('ContentType', 'application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml').att('PartName', '/xl/worksheets/sheet' + (i + 1) + '.xml');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (s.drawingCollection.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >                xml.ele('Override').att('ContentType', 'application/vnd.openxmlformats-officedocument.drawing+xml').att('PartName', '/xl/drawings/drawing' + s.sheetId + '.xml');</span>
+            }
+        });
+<span class="cstat-no" title="statement not covered" >        xml.ele('Override').att('ContentType', 'application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml').att('PartName', '/xl/styles.xml');</span>
+<span class="cstat-no" title="statement not covered" >        xml.ele('Override').att('ContentType', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml').att('PartName', '/xl/sharedStrings.xml');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xmlString = xml.doc().end(promiseObj.xmlOutVars);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.xlsx.file('[Content_Types].xml', xmlString);</span>
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var addRootRelsXML = <span class="fstat-no" title="function not covered" >function addRootRelsXML(promiseObj) {</span>
+    // Required as stated in §12.2
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var xml = xmlbuilder.create('Relationships', {</span>
+            'version': '1.0',
+            'encoding': 'UTF-8',
+            'standalone': true
+        }).att('xmlns', 'http://schemas.openxmlformats.org/package/2006/relationships');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        xml.ele('Relationship').att('Id', 'rId1').att('Type', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument').att('Target', 'xl/workbook.xml');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xmlString = xml.doc().end(promiseObj.xmlOutVars);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.xlsx.folder('_rels').file('.rels', xmlString);</span>
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var addWorkBookXML = <span class="fstat-no" title="function not covered" >function addWorkBookXML(promiseObj) {</span>
+    // Required as stated in §12.2
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xml = xmlbuilder.create('workbook', {</span>
+            'version': '1.0',
+            'encoding': 'UTF-8',
+            'standalone': true
+        });
+<span class="cstat-no" title="statement not covered" >        xml.att('mc:Ignorable', 'x15');</span>
+<span class="cstat-no" title="statement not covered" >        xml.att('xmlns', 'http://schemas.openxmlformats.org/spreadsheetml/2006/main');</span>
+<span class="cstat-no" title="statement not covered" >        xml.att('xmlns:mc', 'http://schemas.openxmlformats.org/markup-compatibility/2006');</span>
+<span class="cstat-no" title="statement not covered" >        xml.att('xmlns:r', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships');</span>
+<span class="cstat-no" title="statement not covered" >        xml.att('xmlns:x15', 'http://schemas.microsoft.com/office/spreadsheetml/2010/11/main');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var booksViewEle = xml.ele('bookViews');</span>
+<span class="cstat-no" title="statement not covered" >        booksViewEle.ele('workbookView').att('xWindow', '240').att('yWindow', '15').att('windowWidth', '8505').att('windowHeight', '6240');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var sheetsEle = xml.ele('sheets');</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.wb.sheets.forEach(<span class="fstat-no" title="function not covered" >function (s, i) {</span></span>
+<span class="cstat-no" title="statement not covered" >            sheetsEle.ele('sheet').att('name', s.name).att('sheetId', i + 1).att('r:id', 'rId' + (i + 1));</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (!promiseObj.wb.definedNameCollection.isEmpty) {</span>
+<span class="cstat-no" title="statement not covered" >            promiseObj.wb.definedNameCollection.addToXMLele(xml);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xmlString = xml.doc().end(promiseObj.xmlOutVars);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.xlsx.folder('xl').file('workbook.xml', xmlString);</span>
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var addWorkBookRelsXML = <span class="fstat-no" title="function not covered" >function addWorkBookRelsXML(promiseObj) {</span>
+    // Required as stated in §12.2
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xml = xmlbuilder.create('Relationships', {</span>
+            'version': '1.0',
+            'encoding': 'UTF-8',
+            'standalone': true
+        }).att('xmlns', 'http://schemas.openxmlformats.org/package/2006/relationships');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        xml.ele('Relationship').att('Id', 'rId' + (promiseObj.wb.sheets.length + 1)).att('Target', 'sharedStrings.xml').att('Type', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        xml.ele('Relationship').att('Id', 'rId' + (promiseObj.wb.sheets.length + 2)).att('Target', 'styles.xml').att('Type', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        promiseObj.wb.sheets.forEach(<span class="fstat-no" title="function not covered" >function (s, i) {</span></span>
+<span class="cstat-no" title="statement not covered" >            xml.ele('Relationship').att('Id', 'rId' + (i + 1)).att('Target', 'worksheets/sheet' + (i + 1) + '.xml').att('Type', 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet');</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xmlString = xml.doc().end(promiseObj.xmlOutVars);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.xlsx.folder('xl').folder('_rels').file('workbook.xml.rels', xmlString);</span>
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var addWorkSheetsXML = <span class="fstat-no" title="function not covered" >function addWorkSheetsXML(promiseObj) {</span>
+    // Required as stated in §12.2
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var curSheet = 0;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var processNextSheet = <span class="fstat-no" title="function not covered" >function processNextSheet() {</span></span>
+<span class="cstat-no" title="statement not covered" >            var thisSheet = promiseObj.wb.sheets[curSheet];</span>
+<span class="cstat-no" title="statement not covered" >            if (thisSheet) {</span>
+<span class="cstat-no" title="statement not covered" >                curSheet++;</span>
+<span class="cstat-no" title="statement not covered" >                thisSheet.generateXML().then(<span class="fstat-no" title="function not covered" >function (xml) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve) {</span></span>
+                        // Add worksheet to zip
+<span class="cstat-no" title="statement not covered" >                        promiseObj.xlsx.folder('xl').folder('worksheets').file('sheet' + curSheet + '.xml', xml);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        resolve();</span>
+                    });
+                }).then(<span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >                    return thisSheet.generateRelsXML();</span>
+                }).then(<span class="fstat-no" title="function not covered" >function (xml) {</span>
+<span class="cstat-no" title="statement not covered" >                    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (xml) {</span>
+<span class="cstat-no" title="statement not covered" >                            promiseObj.xlsx.folder('xl').folder('worksheets').folder('_rels').file('sheet' + curSheet + '.xml.rels', xml);</span>
+                        }
+<span class="cstat-no" title="statement not covered" >                        resolve();</span>
+                    });
+                }).then(processNextSheet).catch(<span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >                    promiseObj.wb.logger.error(e.stack);</span>
+                });
+            } else {
+<span class="cstat-no" title="statement not covered" >                resolve(promiseObj);</span>
+            }
+        };
+<span class="cstat-no" title="statement not covered" >        processNextSheet();</span>
+    });
+};
+&nbsp;
+/**
+ * Generate XML for SharedStrings.xml file and add it to zip file. Called from _writeToBuffer()
+ * @private
+ * @memberof WorkBook
+ * @param {Object} promiseObj object containing jszip instance, workbook intance and xmlvars
+ * @return {Promise} Resolves with promiseObj
+ */
+var addSharedStringsXML = <span class="fstat-no" title="function not covered" >function addSharedStringsXML(promiseObj) {</span>
+    // §12.3.15 Shared String Table Part
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xml = xmlbuilder.create('sst', {</span>
+            'version': '1.0',
+            'encoding': 'UTF-8',
+            'standalone': true
+        }).att('count', promiseObj.wb.sharedStrings.length).att('uniqueCount', promiseObj.wb.sharedStrings.length).att('xmlns', 'http://schemas.openxmlformats.org/spreadsheetml/2006/main');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        promiseObj.wb.sharedStrings.forEach(<span class="fstat-no" title="function not covered" >function (s) {</span></span>
+<span class="cstat-no" title="statement not covered" >            if (typeof s === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                xml.ele('si').ele('t').txt(s);</span>
+            } else <span class="cstat-no" title="statement not covered" >if (s instanceof Array) {</span>
+<span class="cstat-no" title="statement not covered" >                (<span class="fstat-no" title="function not covered" >function () {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    var thisSI = xml.ele('si');</span>
+<span class="cstat-no" title="statement not covered" >                    var theseRuns = []; </span>// §18.4.4 r (Rich Text Run)
+<span class="cstat-no" title="statement not covered" >                    var currProps = {};</span>
+<span class="cstat-no" title="statement not covered" >                    var curRun = void 0;</span>
+<span class="cstat-no" title="statement not covered" >                    var i = 0;</span>
+<span class="cstat-no" title="statement not covered" >                    while (i &lt; s.length) {</span>
+<span class="cstat-no" title="statement not covered" >                        if (typeof s[i] === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                            if (curRun === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >                                theseRuns.push({</span>
+                                    props: {},
+                                    text: ''
+                                });
+<span class="cstat-no" title="statement not covered" >                                curRun = theseRuns[theseRuns.length - 1];</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            curRun.text = curRun.text + s[i];</span>
+                        } else <span class="cstat-no" title="statement not covered" >if (_typeof(s[i]) === 'object') {</span>
+<span class="cstat-no" title="statement not covered" >                            theseRuns.push({</span>
+                                props: {},
+                                text: ''
+                            });
+<span class="cstat-no" title="statement not covered" >                            curRun = theseRuns[theseRuns.length - 1];</span>
+<span class="cstat-no" title="statement not covered" >                            Object.keys(s[i]).forEach(<span class="fstat-no" title="function not covered" >function (k) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                currProps[k] = s[i][k];</span>
+                            });
+<span class="cstat-no" title="statement not covered" >                            Object.keys(currProps).forEach(<span class="fstat-no" title="function not covered" >function (k) {</span></span>
+<span class="cstat-no" title="statement not covered" >                                curRun.props[k] = currProps[k];</span>
+                            });
+<span class="cstat-no" title="statement not covered" >                            if (s[i].value !== undefined) {</span>
+<span class="cstat-no" title="statement not covered" >                                curRun.text = s[i].value;</span>
+                            }
+                        }
+<span class="cstat-no" title="statement not covered" >                        i++;</span>
+                    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                    theseRuns.forEach(<span class="fstat-no" title="function not covered" >function (run) {</span></span>
+<span class="cstat-no" title="statement not covered" >                        if (Object.keys(run).length &lt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >                            thisSI.ele('t', run.text).att('xml:space', 'preserve');</span>
+                        } else {
+<span class="cstat-no" title="statement not covered" >                            var thisRun = thisSI.ele('r');</span>
+<span class="cstat-no" title="statement not covered" >                            var thisRunProps = thisRun.ele('rPr');</span>
+<span class="cstat-no" title="statement not covered" >                            typeof run.props.name === 'string' ? thisRunProps.ele('rFont').att('val', run.props.name) : null;</span>
+<span class="cstat-no" title="statement not covered" >                            run.props.bold === true ? thisRunProps.ele('b') : null;</span>
+<span class="cstat-no" title="statement not covered" >                            run.props.italics === true ? thisRunProps.ele('i') : null;</span>
+<span class="cstat-no" title="statement not covered" >                            run.props.strike === true ? thisRunProps.ele('strike') : null;</span>
+<span class="cstat-no" title="statement not covered" >                            run.props.outline === true ? thisRunProps.ele('outline') : null;</span>
+<span class="cstat-no" title="statement not covered" >                            run.props.shadow === true ? thisRunProps.ele('shadow') : null;</span>
+<span class="cstat-no" title="statement not covered" >                            run.props.condense === true ? thisRunProps.ele('condense') : null;</span>
+<span class="cstat-no" title="statement not covered" >                            run.props.extend === true ? thisRunProps.ele('extend') : null;</span>
+<span class="cstat-no" title="statement not covered" >                            if (typeof run.props.color === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >                                var thisColor = new CTColor(run.props.color);</span>
+<span class="cstat-no" title="statement not covered" >                                thisColor.addToXMLele(thisRunProps);</span>
+                            }
+<span class="cstat-no" title="statement not covered" >                            typeof run.props.size === 'number' ? thisRunProps.ele('sz').att('val', run.props.size) : null;</span>
+<span class="cstat-no" title="statement not covered" >                            run.props.underline === true ? thisRunProps.ele('u') : null;</span>
+<span class="cstat-no" title="statement not covered" >                            typeof run.props.vertAlign === 'string' ? thisRunProps.ele('vertAlign').att('val', run.props.vertAlign) : null;</span>
+<span class="cstat-no" title="statement not covered" >                            thisRun.ele('t', run.text).att('xml:space', 'preserve');</span>
+                        }
+                    });
+                })();
+            }
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xmlString = xml.doc().end(promiseObj.xmlOutVars);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.xlsx.folder('xl').file('sharedStrings.xml', xmlString);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var addStylesXML = <span class="fstat-no" title="function not covered" >function addStylesXML(promiseObj) {</span>
+    // §12.3.20 Styles Part
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xml = xmlbuilder.create('styleSheet', {</span>
+            'version': '1.0',
+            'encoding': 'UTF-8',
+            'standalone': true
+        }).att('mc:Ignorable', 'x14ac').att('xmlns', 'http://schemas.openxmlformats.org/spreadsheetml/2006/main').att('xmlns:mc', 'http://schemas.openxmlformats.org/markup-compatibility/2006').att('xmlns:x14ac', 'http://schemas.microsoft.com/office/spreadsheetml/2009/9/ac');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (promiseObj.wb.styleData.numFmts.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            (<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                var nfXML = xml.ele('numFmts').att('count', promiseObj.wb.styleData.numFmts.length);</span>
+<span class="cstat-no" title="statement not covered" >                promiseObj.wb.styleData.numFmts.forEach(<span class="fstat-no" title="function not covered" >function (nf) {</span></span>
+<span class="cstat-no" title="statement not covered" >                    nf.addToXMLele(nfXML);</span>
+                });
+            })();
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var fontXML = xml.ele('fonts').att('count', promiseObj.wb.styleData.fonts.length);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.wb.styleData.fonts.forEach(<span class="fstat-no" title="function not covered" >function (f) {</span></span>
+<span class="cstat-no" title="statement not covered" >            f.addToXMLele(fontXML);</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var fillXML = xml.ele('fills').att('count', promiseObj.wb.styleData.fills.length);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.wb.styleData.fills.forEach(<span class="fstat-no" title="function not covered" >function (f) {</span></span>
+<span class="cstat-no" title="statement not covered" >            var fXML = fillXML.ele('fill');</span>
+<span class="cstat-no" title="statement not covered" >            f.addToXMLele(fXML);</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var borderXML = xml.ele('borders').att('count', promiseObj.wb.styleData.borders.length);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.wb.styleData.borders.forEach(<span class="fstat-no" title="function not covered" >function (b) {</span></span>
+<span class="cstat-no" title="statement not covered" >            b.addToXMLele(borderXML);</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var cellXfsXML = xml.ele('cellXfs').att('count', promiseObj.wb.styles.length);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.wb.styles.forEach(<span class="fstat-no" title="function not covered" >function (s) {</span></span>
+<span class="cstat-no" title="statement not covered" >            s.addXFtoXMLele(cellXfsXML);</span>
+        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (promiseObj.wb.dxfCollection.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            promiseObj.wb.dxfCollection.addToXMLele(xml);</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        var xmlString = xml.doc().end(promiseObj.xmlOutVars);</span>
+<span class="cstat-no" title="statement not covered" >        promiseObj.xlsx.folder('xl').file('styles.xml', xmlString);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+var addDrawingsXML = <span class="fstat-no" title="function not covered" >function addDrawingsXML(promiseObj) {</span>
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve) {</span></span>
+<span class="cstat-no" title="statement not covered" >        if (!promiseObj.wb.mediaCollection.isEmpty) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            promiseObj.wb.sheets.forEach(<span class="fstat-no" title="function not covered" >function (ws) {</span></span>
+<span class="cstat-no" title="statement not covered" >                if (!ws.drawingCollection.isEmpty) {</span>
+<span class="cstat-no" title="statement not covered" >                    (<span class="fstat-no" title="function not covered" >function () {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        var drawingRelXML = xmlbuilder.create('Relationships', {</span>
+                            'version': '1.0',
+                            'encoding': 'UTF-8',
+                            'standalone': true
+                        }).att('xmlns', 'http://schemas.openxmlformats.org/package/2006/relationships');
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        var drawingsXML = xmlbuilder.create('xdr:wsDr', {</span>
+                            'version': '1.0',
+                            'encoding': 'UTF-8',
+                            'standalone': true
+                        });
+<span class="cstat-no" title="statement not covered" >                        drawingsXML.att('xmlns:a', 'http://schemas.openxmlformats.org/drawingml/2006/main').att('xmlns:xdr', 'http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        ws.drawingCollection.drawings.forEach(<span class="fstat-no" title="function not covered" >function (d) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            if (d.kind === 'image') {</span>
+<span class="cstat-no" title="statement not covered" >                                var target = 'image' + d.id + '.' + d.extension;</span>
+<span class="cstat-no" title="statement not covered" >                                promiseObj.xlsx.folder('xl').folder('media').file(target, fs.readFileSync(d.imagePath));</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                                drawingRelXML.ele('Relationship').att('Id', d.rId).att('Target', '../media/' + target).att('Type', d.type);</span>
+                            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                            d.addToXMLele(drawingsXML);</span>
+                        });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                        var drawingsXMLStr = drawingsXML.doc().end(promiseObj.xmlOutVars);</span>
+<span class="cstat-no" title="statement not covered" >                        var drawingRelXMLStr = drawingRelXML.doc().end(promiseObj.xmlOutVars);</span>
+<span class="cstat-no" title="statement not covered" >                        promiseObj.xlsx.folder('xl').folder('drawings').file('drawing' + ws.sheetId + '.xml', drawingsXMLStr);</span>
+<span class="cstat-no" title="statement not covered" >                        promiseObj.xlsx.folder('xl').folder('drawings').folder('_rels').file('drawing' + ws.sheetId + '.xml.rels', drawingRelXMLStr);</span>
+                    })();
+                }
+            });
+        }
+<span class="cstat-no" title="statement not covered" >        resolve(promiseObj);</span>
+    });
+};
+&nbsp;
+/**
+ * Use JSZip to generate file to a node buffer
+ * @private
+ * @memberof WorkBook
+ * @param {WorkBook} wb WorkBook instance
+ * @return {Promise} resolves with Buffer 
+ */
+var writeToBuffer = <span class="fstat-no" title="function not covered" >function writeToBuffer(wb) {</span>
+<span class="cstat-no" title="statement not covered" >    return new Promise(<span class="fstat-no" title="function not covered" >function (resolve, reject) {</span></span>
+<span class="cstat-no" title="statement not covered" >        var promiseObj = {</span>
+            wb: wb,
+            xlsx: new JSZip(),
+            xmlOutVars: {}
+        };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        if (promiseObj.wb.sheets.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >            promiseObj.wb.WorkSheet();</span>
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        addRootContentTypesXML(promiseObj).then(addWorkSheetsXML).then(addRootRelsXML).then(addWorkBookXML).then(addWorkBookRelsXML).then(addSharedStringsXML).then(addStylesXML).then(addDrawingsXML).then(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >            wb.opts.jszip.type = 'nodebuffer';</span>
+<span class="cstat-no" title="statement not covered" >            promiseObj.xlsx.generateAsync(wb.opts.jszip).then(<span class="fstat-no" title="function not covered" >function (buf) {</span></span>
+<span class="cstat-no" title="statement not covered" >                resolve(buf);</span>
+            }).catch(<span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >                reject(e);</span>
+            });
+        }).catch(<span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >            wb.logger.error(e.stack);</span>
+<span class="cstat-no" title="statement not covered" >            reject(e);</span>
+        });
+    });
+};
+&nbsp;
+module.exports = { writeToBuffer: writeToBuffer };
+//# sourceMappingURL=builder.js.map
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 11 2017 18:18:07 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
